@@ -1,0 +1,110 @@
+{
+  "log": {
+    "access": "/var/log/v2ray/access.log",
+    "loglevel": "info",
+    "error": "/var/log/v2ray/error.log"
+  },
+  "inbounds": [
+    {
+      "port": 6443,
+      "streamSettings": {
+        "kcpSettings": {
+          "congestion": false,
+          "readBufferSize": 2,
+          "downlinkCapacity": 100,
+          "mtu": 1350,
+          "uplinkCapacity": 100,
+          "writeBufferSize": 2,
+          "header": {
+            "type": "utp"
+          },
+          "tti": 50
+        },
+        "security": "none",
+        "wsSettings": {},
+        "httpSettings": {},
+        "quicSettings": {},
+        "tlsSettings": {},
+        "network": "kcp",
+        "tcpSettings": {}
+      },
+      "settings": {
+        "clients": [
+          {
+            "id": "9300acde-4e07-4f1d-be6c-50eeb20fd890",
+            "alterId": 16
+          }
+        ]
+      },
+      "protocol": "vmess"
+    },
+    {
+      "port": 36243,
+      "streamSettings": {
+        "kcpSettings": {
+          "congestion": false,
+          "readBufferSize": 2,
+          "downlinkCapacity": 100,
+          "writeBufferSize": 2,
+          "uplinkCapacity": 100,
+          "mtu": 1350,
+          "header": {
+            "type": "srtp"
+          },
+          "tti": 50
+        },
+        "wsSettings": {},
+        "network": "kcp",
+        "quicSettings": {},
+        "tlsSettings": {},
+        "security": "none",
+        "tcpSettings": {},
+        "httpSettings": {}
+      },
+      "settings": {
+        "clients": [
+          {
+            "id": "5efe3170-341e-11e9-820c-0aaec72e78cb",
+            "alterId": 16
+          }
+        ]
+      },
+      "protocol": "vmess"
+    }
+  ],
+  "outbounds": [
+    {
+      "settings": {},
+      "protocol": "freedom"
+    },
+    {
+      "settings": {},
+      "tag": "blocked",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "outboundTag": "blocked",
+        "ip": [
+          "0.0.0.0/8",
+          "10.0.0.0/8",
+          "100.64.0.0/10",
+          "169.254.0.0/16",
+          "172.16.0.0/12",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.168.0.0/16",
+          "198.18.0.0/15",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "type": "field"
+      }
+    ]
+  }
+}
